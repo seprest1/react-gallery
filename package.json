@@ -5,13 +5,14 @@
   "proxy": "http://localhost:5000",
   "dependencies": {
     "axios": "^0.19.2",
+    "body-parser": "^1.20.0",
     "express": "^4.17.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.19.4"
   },
   "scripts": {
     "start": "react-scripts build && node server/server.js",
