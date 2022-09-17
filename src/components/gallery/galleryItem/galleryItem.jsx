@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function GalleryItem({image, fetchGallery}){
 
-    const likeCounter = () => {
+    const sendLike = () => {
         let newLikeCount = image.likes + 1;
         console.log(newLikeCount);
         axios ({
@@ -21,28 +21,44 @@ function GalleryItem({image, fetchGallery}){
     const renderLikeMessage = (image) => {
         switch(image.likes){
             case 0:
-                return `Press Like Above!`
-            case 1: 
-                return `1 Like`
+                return ''
             default: 
-                return `${image.likes} Likes`
+                return image.likes
         }
     }
 
     const [displayPicture, setDisplayPicture] = useState();
 
-    const toggleDescription = (image) => {
+    const toggleDescription = () => {
         setDisplayPicture(!displayPicture);
     }
 
-    return(
-        <div key={image.id} className="gallery-item">
-            {displayPicture === false ? <div className="description" onClick={toggleDescription}>{image.description}</div> :
-            <img src={image.url} className="gallery-image" onClick={toggleDescription}/>}
+    const handleDelete = () => {
+        axios ({
+            method: 'DELETE',
+            url: `/gallery/delete/${image.id}`
+        }).then((response) => {
+            fetchGallery();
+        }).catch((error) => {
+            console.log('Error deleting image', error);
+        });
+    };
 
-            <button onClick={likeCounter} className="likeButton">♥</button>
-            
-            <p className="likeCounts">{renderLikeMessage(image)}</p>
+    return(
+        <div key={image.id} className={"gallery-item"}>
+            {displayPicture === false ? 
+                <div className="description-section" onMouseLeave={toggleDescription}>
+                    <div className="description">{image.description}</div>
+                    <div>
+                        <button onClick={handleDelete}>x</button>
+                    </div>
+                </div> 
+                :  
+                <div className="image-section">
+                    <img src={image.url} className="gallery-image" onMouseEnter={toggleDescription}/>
+                    <button onClick={sendLike} className="like-button">♥</button>
+                    <p className="like-counts">{renderLikeMessage(image)}</p>
+                </div>}
         </div>
     )
 };
