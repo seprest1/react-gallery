@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function GalleryItem({image, fetchGallery}){
 
-    const likeCounter = () => {
+    const sendLike = () => {
         let newLikeCount = image.likes + 1;
         console.log(newLikeCount);
         axios ({
@@ -33,17 +33,30 @@ function GalleryItem({image, fetchGallery}){
         setDisplayPicture(!displayPicture);
     }
 
+    const handleDelete = () => {
+        axios ({
+            method: 'DELETE',
+            url: `/gallery/delete/${image.id}`
+        }).then((response) => {
+            fetchGallery();
+        }).catch((error) => {
+            console.log('Error deleting image', error);
+        });
+    };
+
     return(
         <div key={image.id} className={"gallery-item"}>
             {displayPicture === false ? 
                 <div className="description-section" onMouseLeave={toggleDescription}>
                     <div className="description">{image.description}</div>
-                    <button>Delete</button>
+                    <div>
+                        <button onClick={handleDelete}>x</button>
+                    </div>
                 </div> 
                 :  
                 <div className="image-section">
                     <img src={image.url} className="gallery-image" onMouseEnter={toggleDescription}/>
-                    <button onClick={likeCounter} className="like-button">♥</button>
+                    <button onClick={sendLike} className="like-button">♥</button>
                     <p className="like-counts">{renderLikeMessage(image)}</p>
                 </div>}
         </div>

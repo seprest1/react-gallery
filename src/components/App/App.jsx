@@ -28,7 +28,7 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">Gallery of My Life</h1>
         </header>
-        <Gallery imagesArray={gallery}/>
+        <Gallery imagesArray={gallery} fetchGallery={fetchGallery}/>
         <Form fetchGallery={fetchGallery}/>
         <footer></footer>
       </div>
