@@ -1,5 +1,5 @@
-import React from 'react';
-import '../gallery.css'
+import React, { useState } from 'react';
+import '../Gallery.css'
 import axios from 'axios';
 
 function GalleryItem({image, fetchGallery}){
@@ -18,7 +18,7 @@ function GalleryItem({image, fetchGallery}){
         })
     }
 
-    function renderLikeMessage(image){
+    const renderLikeMessage = (image) => {
         switch(image.likes){
             case 0:
                 return `Press Like Above!`
@@ -29,12 +29,16 @@ function GalleryItem({image, fetchGallery}){
         }
     }
 
-    return(
-        <div className="gallery-item">
-            {image.displaypicture ? 
-                <img src={image.url} className="gallery-image"/> : 
-                <div className="text-box">{image.description}</div>}
+    const [displayPicture, setDisplayPicture] = useState();
 
+    const toggleDescription = (image) => {
+        setDisplayPicture(!displayPicture);
+    }
+
+    return(
+        <div key={image.id} className="gallery-item">
+            {displayPicture === false ? <div className="description" onClick={toggleDescription}>{image.description}</div> :
+            <img src={image.url} className="gallery-image" onClick={toggleDescription}/>}
             <button onClick={likeCounter} className="likeButton">Like</button>
             <p className="likeCounts">{renderLikeMessage(image)}</p>
         </div>

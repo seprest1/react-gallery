@@ -1,5 +1,5 @@
-import GalleryItem from '../gallery/galleryItem/galleryItem';
-import './gallery.css';
+import GalleryItem from './GalleryItem/GalleryItem';
+import './Gallery.css';
 
 function Gallery ({imagesArray, fetchGallery}){
     console.log(`Gallery images in Gallery function:`, imagesArray);
