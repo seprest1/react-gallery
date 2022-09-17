@@ -30,6 +30,7 @@ function App() {
         </header>
         <Gallery imagesArray={gallery}/>
         <Form fetchGallery={fetchGallery}/>
+        <footer></footer>
       </div>
     );
 }

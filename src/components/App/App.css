@@ -1,15 +1,34 @@
+body{
+  margin: 0;
+  display: grid;
+}
 .App {
   text-align: center;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.3fr 1fr 0.4fr 0.3fr;
+  grid-template-areas: 
+    "header"
+    "gallery"
+    "inputs"
+    "footer";
 }
 
 .App-header {
   background-color: #222;
   padding: 1em;
   color: white;
-  margin-bottom: 1em;
+  grid-area:header;
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
+footer {
+  background-color: #222;
+  grid-area: footer;
+  margin: 0;
+}

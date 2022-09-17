@@ -1,5 +1,7 @@
 import React, { useState } from 'react'; 
 import axios from 'axios';
+import './Form.css';
+import CustomizedButtons from './Button';
 
 function Form ({fetchGallery}){
     const [url, setUrl] = useState('');
@@ -41,7 +43,7 @@ function Form ({fetchGallery}){
                 type="text"
                 value={description}
                 onChange={(e) => {setDescription(e.target.value)}} />
-            <button>Submit</button>
+            <CustomizedButtons />
         </form>
     )
 }
