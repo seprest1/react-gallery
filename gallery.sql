@@ -4,7 +4,8 @@ CREATE TABLE "gallery" (
 	id SERIAL PRIMARY KEY,
 	url VARCHAR(500) NOT NULL,
 	description VARCHAR (500),
-	likes INTEGER
+	likes INTEGER,
+	displayPicture BOOLEAN DEFAULT TRUE
 );
 
 INSERT INTO "gallery" 

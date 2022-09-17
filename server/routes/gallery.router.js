@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
             res.send(result.rows);
         })
         .catch(error => {
-            console.log('error getting gallery', error);
+            console.log('SQL failed in GET /gallery/likes/:id', error);
             res.sendStatus(500);
         });
 });
@@ -21,6 +21,25 @@ router.get('/', (req, res) => {
 //POST ROUTE
 
 //PUT ROUTE
+
+router.put('/likes/:id', (req, res) => {
+    console.log('PUT route received a request');
+    console.log(req.body.newLikeCount);
+    let queryText = 
+        `UPDATE "gallery"
+            SET "likes" = $1
+            WHERE id=$2;`
+    
+    let sqlValues = [req.body.newLikeCount, req.params.id];
+    pool.query (queryText, sqlValues)
+        .then(result => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('SQL failed in PUT /gallery/likes/:id', error);
+            res.sendStatus(500);
+        });
+});
 
 //DELETE ROUTE
 

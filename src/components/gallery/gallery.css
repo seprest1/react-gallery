@@ -1,0 +1,40 @@
+.gallery-container{
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.gallery-item{
+    height: 250px;
+    width: 250px;
+    padding: 10px;
+    background-color: plum;
+    justify-content: center;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.gallery-image{
+    height: 150px;
+    width: 150px;
+}
+
+.text-box{
+    height: 150px;
+    width: 150px;
+    background-color: peru; 
+}
+
+.likeButton{
+
+}
+
+.likeCounts{
+    margin: 0;
+    padding: 0;
+}
