@@ -6,8 +6,8 @@ function Gallery ({imagesArray}){
     return (
         imagesArray.map(image => (
             <GalleryItem 
-                image = {image}
-                key = {image.id}
+                image={image}
+                key={image.id}
                 />))
     )
 };
