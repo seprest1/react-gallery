@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 //GET ROUTE
 router.get('/', (req, res) => {
     console.log('GET /gallery received a request');
-    let queryText = 
+    const queryText = 
         `SELECT * FROM "gallery"
             ORDER BY id;`;
     pool.query(queryText)
@@ -19,18 +19,34 @@ router.get('/', (req, res) => {
 });
 
 //POST ROUTE
+router.post('/', (req, res) => {
+    console.log('POST route received a request');
+    console.log(req.body);
+    const queryText = 
+        `INSERT INTO "gallery"
+            (url, description, likes)
+            VALUES
+                ($1, $2, $3);`
+    const sqlValues = [req.body.url, req.body.description, req.body.likes]
+    pool.query(queryText, sqlValues)
+        .then(result => {
+            res.sendStatus(201);
+        }).catch(error => {
+            console.log('Image failed to POST', error);
+            res.sendStatus(500);
+        });
+});
 
 //PUT ROUTE
-
 router.put('/likes/:id', (req, res) => {
     console.log('PUT route received a request');
     console.log(req.body.newLikeCount);
-    let queryText = 
+    const queryText = 
         `UPDATE "gallery"
             SET "likes" = $1
             WHERE id=$2;`
     
-    let sqlValues = [req.body.newLikeCount, req.params.id];
+    const sqlValues = [req.body.newLikeCount, req.params.id];
     pool.query (queryText, sqlValues)
         .then(result => {
             res.sendStatus(200);

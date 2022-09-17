@@ -1,17 +1,22 @@
 .gallery-container{
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    grid-gap: 15px;
     align-items: center;
     justify-items: center;
+    overflow: scroll;
+    grid-area: gallery;
 }
+
+
 
 .gallery-item{
     height: 250px;
     width: 250px;
-    padding: 10px;
+    margin: 20px;
     background-color: plum;
     justify-content: center;
     display: grid;
@@ -20,14 +25,17 @@
 }
 
 .gallery-image{
-    height: 150px;
-    width: 150px;
+    height: 50%;
+    width: 90%;
+    margin: 0;
+    padding: 0;
 }
 
 .description{
-    height: 150px;
-    width: 150px;
+    height: 50%;
+    width: 90%;
     background-color: peru; 
+    min-height: 50%;
 }
 
 .likeButton{
