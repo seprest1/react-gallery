@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-import Gallery from '../gallery/galleryList';
+import Gallery from '../Gallery/GalleryList';
+import Form from '../Form/Form'
 
 function App() {
   useEffect(() => {
