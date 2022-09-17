@@ -5,7 +5,6 @@ CREATE TABLE "gallery" (
 	url VARCHAR(500) NOT NULL,
 	description VARCHAR (500),
 	likes INTEGER,
-	displayPicture BOOLEAN DEFAULT TRUE
 );
 
 INSERT INTO "gallery" 

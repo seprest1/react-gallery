@@ -1,7 +1,7 @@
 const pg = require('pg');
 
 const config = {
-  database: 'gallery_images',
+  database: 'react_gallery',
   host: 'localhost',
   port: 5432,
   max: 10,

@@ -39,7 +39,9 @@ function GalleryItem({image, fetchGallery}){
         <div key={image.id} className="gallery-item">
             {displayPicture === false ? <div className="description" onClick={toggleDescription}>{image.description}</div> :
             <img src={image.url} className="gallery-image" onClick={toggleDescription}/>}
+
             <button onClick={likeCounter} className="likeButton">Like</button>
+            
             <p className="likeCounts">{renderLikeMessage(image)}</p>
         </div>
     )
