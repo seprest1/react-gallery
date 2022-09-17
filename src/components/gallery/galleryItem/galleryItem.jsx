@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../Gallery.css'
 import axios from 'axios';
+import { IconButton } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function GalleryItem({image, fetchGallery}){
 
@@ -48,15 +50,15 @@ function GalleryItem({image, fetchGallery}){
         <div key={image.id} className={"gallery-item"}>
             {displayPicture === false ? 
                 <div className="description-section" onMouseLeave={toggleDescription}>
-                    <div className="description">{image.description}</div>
-                    <div>
+                    <div class="delete-button">
                         <button onClick={handleDelete}>x</button>
                     </div>
+                    <div className="description">{image.description}</div>
                 </div> 
                 :  
-                <div className="image-section">
-                    <img src={image.url} className="gallery-image" onMouseEnter={toggleDescription}/>
-                    <button onClick={sendLike} className="like-button">♥</button>
+                <div className="image-section">                                                             
+                    <img src={image.url} className="gallery-image" onMouseEnter={toggleDescription} onClick={toggleDescription}/> 
+                    <IconButton onClick={sendLike} className="like-button"><FavoriteBorderIcon/></IconButton>
                     <p className="like-counts">{renderLikeMessage(image)}</p>
                 </div>}
         </div>
