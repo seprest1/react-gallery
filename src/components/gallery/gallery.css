@@ -4,14 +4,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    grid-gap: 15px;
     align-items: center;
     justify-items: center;
+    overflow: scroll;
 }
 
 .gallery-item{
     height: 250px;
     width: 250px;
-    padding: 10px;
+    margin: 20px;
     background-color: plum;
     justify-content: center;
     display: grid;
