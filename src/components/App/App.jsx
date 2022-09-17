@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
+import Gallery from '../gallery/galleryList';
 
 function App() {
   useEffect(() => {
@@ -26,8 +27,8 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">Gallery of My Life</h1>
         </header>
-        <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"/>
+        {/* <Form /> */}
+        <Gallery imagesArray = {gallery}/>
       </div>
     );
 }
