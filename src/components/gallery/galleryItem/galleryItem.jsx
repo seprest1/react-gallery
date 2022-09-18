@@ -50,7 +50,7 @@ function GalleryItem({image, fetchGallery}){
         <div key={image.id} className={"gallery-item"}>
             {displayPicture === false ? 
                 <div className="description-section" onMouseLeave={toggleDescription}>
-                    <div class="delete-button">
+                    <div className="delete-button">
                         <button onClick={handleDelete}>x</button>
                     </div>
                     <div className="description">{image.description}</div>
