@@ -6,6 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function GalleryItem({image, fetchGallery}){
 
+    //PUT route to update like count
     const sendLike = () => {
         let newLikeCount = image.likes + 1;
         console.log(newLikeCount);
@@ -20,6 +21,7 @@ function GalleryItem({image, fetchGallery}){
         })
     }
 
+    //leaves section blank if there aren't any likes
     const renderLikeMessage = (image) => {
         switch(image.likes){
             case 0:
@@ -31,10 +33,12 @@ function GalleryItem({image, fetchGallery}){
 
     const [displayPicture, setDisplayPicture] = useState();
 
+    //switches between picture/description
     const toggleDescription = () => {
         setDisplayPicture(!displayPicture);
     }
 
+    //DELETE route
     const handleDelete = () => {
         axios ({
             method: 'DELETE',
@@ -46,7 +50,7 @@ function GalleryItem({image, fetchGallery}){
         });
     };
 
-    return(
+    return(     //ternerary to toggle between picture/description
         <div key={image.id} className={"gallery-item"}>
             {displayPicture === false ? 
                 <div className="description-section" onMouseLeave={toggleDescription}>

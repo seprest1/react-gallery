@@ -1,14 +1,15 @@
 import React, { useState } from 'react'; 
 import axios from 'axios';
-import './Form.css';
-import { IconButton } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { IconButton, TextField } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
-    
+
 function Form ({fetchGallery}){
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('');                         
     const [description, setDescription] = useState ('');
-    
+
+    //POST ROUTE
     const createImage = () => {
         console.log(url, description);
         axios({
@@ -20,32 +21,52 @@ function Form ({fetchGallery}){
                 likes: 0
             }
         }).then((response) => {
-            fetchGallery();
+            fetchGallery();     //render DOM
             setUrl('');
-            setDescription('');
+            setDescription('');     //set inputs back to blank
+            setFormStatus('');
         }).catch((error) => {
-            console.log('createImage failed', error);
-            });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        createImage();
+            console.log('createImage failed.', error);
+        });
     }
-    return(
-        <form className="form">
-            <input 
-                placeholder="Image.com"
-                type="text"
-                value={url}
-                onChange={(e) => {setUrl(e.target.value)}} />
-            <input 
-                placeholder="Description"
-                type="text"
-                value={description}
-                onChange={(e) => {setDescription(e.target.value)}} />
-            <IconButton onClick={handleSubmit}><FavoriteBorderIcon/></IconButton>
-        </form>
+
+    const [formStatus, setFormStatus] = useState('');       //whether the form is opened up
+
+    const openForm = () => {
+        setFormStatus('open');
+    }
+    return(                     
+        <>                                                               
+        {formStatus === 'open' ?        //ternary to determine if form should be open, otherwise present + button     
+            <div className="form"  onMouseLeave={() => {setFormStatus('')}}>        
+                <TextField 
+                    id="outlined-basic" 
+                    label="url" 
+                    variant="outlined"
+                    placeholder="Enter Text.."
+                    size="small"
+                    color="secondary"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    className="inputs"
+                    required/>
+                <TextField 
+                    id="outlined-basic" 
+                    label="caption" 
+                    variant="outlined" 
+                    placeholder="Enter Text.."
+                    size="small"
+                    color="secondary"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="inputs"
+                    required/>
+                <IconButton onClick={createImage}><ArrowUpwardIcon/></IconButton>
+            </div>
+            :
+            <IconButton onClick={openForm} className="open-button"><AddIcon/></IconButton>}
+        </>
     )
 }  
 
