@@ -24,6 +24,8 @@ We were tasked with making a gallery, using React, that would be interactive.
 ## Construction
 After spending a week learning React, about states and functional programming, about components, props and data flow, I felt relatively comfortable creating the foundation for my app in React. Creating my own mental model to understand the data helped concretize the more abstract concepts of the week. 
 
+![image](https://user-images.githubusercontent.com/105940054/190927839-1be3fb37-bbdb-4b4d-b423-1d756a2b789d.png)
+
 #### Challenges
 - Handling branching, merging and merge conflicts, without deleting important code
 - Mouse events (spent some time learning, but want to understand more)
