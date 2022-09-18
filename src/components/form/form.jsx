@@ -1,15 +1,20 @@
-import React, {useState} from 'react'; 
+import React, { useState } from 'react'; 
 import axios from 'axios';
+import './Form.css';
+import { IconButton } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-function Form (fetchGallery){
+    
+function Form ({fetchGallery}){
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState ('');
-
+    
     const createImage = () => {
+        console.log(url, description);
         axios({
             method: 'POST',
             url: '/gallery',
-            data: {
+            data:{
                 url: url,
                 description: description,
                 likes: 0
@@ -19,26 +24,29 @@ function Form (fetchGallery){
             setUrl('');
             setDescription('');
         }).catch((error) => {
-            console.log('createImage failed.', error);
-        });
+            console.log('createImage failed', error);
+            });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createImage();
     }
-
-
     return(
-        <div className="form" onSubmit={createImage}>
+        <form className="form">
             <input 
                 placeholder="Image.com"
                 type="text"
                 value={url}
-                onChange={(e) => setUrl(e.target.value)}/>
+                onChange={(e) => {setUrl(e.target.value)}} />
             <input 
                 placeholder="Description"
                 type="text"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}/>
-            <button>Submit</button>
-        </div>
+                onChange={(e) => {setDescription(e.target.value)}} />
+            <IconButton onClick={handleSubmit}><FavoriteBorderIcon/></IconButton>
+        </form>
     )
-}
+}  
 
 export default Form;
