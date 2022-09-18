@@ -11,6 +11,7 @@ function App() {
 
   const [gallery, setGallery] = useState([]);
 
+  //render DOM with images
   const fetchGallery = () => {
     axios({
       method: 'GET', 

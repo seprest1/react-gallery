@@ -1,4 +1,5 @@
 const pg = require('pg');
+//connect to database
 
 const config = {
   database: 'react_gallery',

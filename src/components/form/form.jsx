@@ -6,9 +6,10 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 
 function Form ({fetchGallery}){
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('');                         
     const [description, setDescription] = useState ('');
 
+    //POST ROUTE
     const createImage = () => {
         axios({
             method: 'POST',
@@ -19,25 +20,24 @@ function Form ({fetchGallery}){
                 likes: 0
             }
         }).then((response) => {
-            fetchGallery();
+            fetchGallery();     //render DOM
             setUrl('');
-            setDescription('');
+            setDescription('');     //set inputs back to blank
             setFormStatus('');
         }).catch((error) => {
             console.log('createImage failed.', error);
         });
     }
 
-    const [formStatus, setFormStatus] = useState('');
+    const [formStatus, setFormStatus] = useState('');       //whether the form is opened up
 
     const openForm = () => {
         setFormStatus('open');
     }
-    // onMouseLeave={() => {setFormStatus('')}}
-    return(
-        <>
-        {formStatus === 'open' ?
-            <div className="form" >
+    return(                     
+        <>                                                               
+        {formStatus === 'open' ?        //ternary to determine if form should be open, otherwise present + button     
+            <div className="form"  onMouseLeave={() => {setFormStatus('')}}>        
                 <TextField 
                     id="outlined-basic" 
                     label="url" 

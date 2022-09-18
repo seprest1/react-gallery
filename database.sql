@@ -18,3 +18,12 @@ INSERT INTO "gallery"
 	('https://m.media-amazon.com/images/I/41M-X191znL._SL500_.jpg', 'Viper''s Bugloss', 0);
 	
 	
+	
+
+
+
+
+
+	
+	
+	
